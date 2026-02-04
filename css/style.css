@@ -1,0 +1,607 @@
+/*RESET BÁSICO*/
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*VARIABLES GLOBALES*/
+:root{
+    --bg-main: #36511A; 
+    --bg-accent: #476727;
+    --text-main: #F0FFE0;
+    --text-muted: #d8e6c3;
+}
+
+/*ESTILOS BASE*/
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+/*HEADER*/
+.header{
+    position: static;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+}
+
+.header.active {
+    position: fixed;
+}
+
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link{
+    display: none;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+/*BOTÓN CENTRAL DE LA NAV*/
+.nav-button{
+    background-color: var(--bg-accent);
+    border: none;
+    width: 44px;
+    height: 32px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#button-icon {
+    height: 100%;
+}
+
+/*HERO*/
+.hero{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: 0rem;
+    padding-inline: 1.5rem;
+}
+
+.hero-title{
+    font-size: clamp(2.5rem, 12vw, 4.5rem);
+    font-weight: 600;
+    text-align: center;
+}
+
+/*AESTHETICS*/
+.spark{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: url('../assets/icons/spark.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.spark{
+    display: none;
+}
+
+/*PANEL*/
+.info-panel{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(63, 91, 29, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 90;
+}
+
+.info-panel.active {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.info-content{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 90%;
+    padding: 2rem;
+    margin-top: 10vh;
+}
+
+.info-image{
+    display: flex;
+    justify-content: center;
+}
+
+.info-image img{
+    width: 70%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.spark{
+    display: none;
+}
+
+.info-text h2{
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.info-text p{
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/*SECCIÓN VISUAL INTERMEDIA*/
+.visual-section{
+    min-height: 100vh;
+    background-image: url('../assets/images/fondo_deco.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visual-section::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(130, 0, 0, 0.25);
+    z-index: 1;
+}
+
+/*SECCIÓN ABOUT + SERVICES*/
+.about-section, .services-section{
+    padding-bottom: 4rem;
+}
+
+.about-section{
+    background-color: #541212;
+}
+
+.services-section{
+    background-image: url('../assets/images/fondo_services.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 6rem;
+
+    position: relative;
+}
+
+.services-section::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(130, 0, 0, 0.25);
+    z-index: 0;
+}
+
+/*BANDA ANIMADA*/
+.moving-band, .moving-band-services{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.moving-band{
+    background-color: #F0FFE0;
+}
+
+.moving-band-services{
+    background-color: #541212;
+}
+
+.band-track, .band-track-services{
+    display: inline-flex;
+    gap: 2rem;
+    padding: 1rem 0;
+    animation: moveBand 30s linear infinite;
+}
+
+@keyframes moveBand{
+    from{
+        transform: translateX(0);
+        /*transform: translateX(50%);*/
+    }
+    to{
+        transform: translateX(-50%);
+    }
+}
+
+.band-track{
+    color: #820000;
+}
+
+.band-track span, .band-track-services span{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/*CONTENIDO ABOUT*/
+.about-content, .services-content{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin: 4rem auto 0;
+    padding: 0 1.5rem;
+}
+
+.about-card, .services-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 24px;
+    padding: 2rem;
+    color: var(--text-main);
+}
+
+.about-card{
+    border: 2px solid #F0FFE0;
+}
+
+.services-card{
+    border: 2px solid #541212;
+    background-color: rgba(84, 18, 18, 1);
+    z-index: 2;
+}
+
+.card-icon img{
+    height: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-card h3, .services-card h3{
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.about-card p, .services-card p{
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/*SECCIÓN CONTACT*/
+.contact-section{
+    background-color: #36511A;
+    position: relative;
+    padding-bottom: 6rem;
+}
+
+/*BANDA ANIMADA*/
+.moving-band-contact{
+    background-color: #F0FFE0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.band-track-contact{
+    display: inline-flex;
+    gap: 3rem;
+    padding: 1rem 0;
+    animation: moveBand 30s linear infinite;
+}
+
+.band-track-contact span{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #36511A;
+}
+
+/*CONTENIDO CONTACT*/
+.contact-content{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin: 4rem auto 0;
+    padding: 0 1.5rem;
+    max-width: 90%;
+}
+
+.contact-image-wrapper{
+    position: relative;
+    border: 2px solid #F0FFE0;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.contact-img {
+    width: 100%;
+    display: block;
+}
+
+.spark-contact-img{
+    display: none;
+}
+
+.contact-info h2{
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.contact-item{
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.contact-item img{
+    height: 2rem;
+}
+
+.contact-item span{
+    font-size: 1rem;
+}
+
+.contact-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+}
+
+.contact-buttons a{
+    text-decoration: none;
+}
+
+.btn-primary,
+.btn-secondary{
+    text-align: center;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    background-color: #476727;
+    color: #F0FFE0;
+}
+
+.footer{
+    background-color: #36511A;
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+}
+
+.footer-nav{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    text-decoration: none;
+}
+
+.footer-nav a{
+    color: #F0FFE0;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: opacity 0.3s ease;
+}
+
+.footer-nav a:hover{
+    opacity: 0.7;
+}
+
+.footer-divider{
+    width: 80%;
+    max-width: 900px;
+    height: 1px;
+    background-color: rgba(240, 255, 224, 0.4);
+    margin: 0 auto 1.5rem;
+}
+
+.footer-copy{
+    font-size: 0.85rem;
+    color: rgba(240, 255, 224, 0.5);
+}
+
+/*★★★★★★★★★★★★★★★★★ RESPONSIVE DESKTOP (>=1024px) ★★★★★★★★★★★★★★★★★*/
+@media (min-width: 1024px) {
+    /*HEADER*/
+    header{
+        position: static;
+        padding: 1.5rem 3rem;
+    }
+    .header.active{
+        position: fixed;
+    }
+    .nav{
+        gap:3rem;
+    }
+    .nav-link{
+        display: inline-block;
+        font-size: 1rem;
+    }
+    .nav-link:hover{
+        opacity: 0.8;
+    }
+    .nav-button:hover{
+        opacity: 0.9;
+    }
+
+    /*PANEL DE INFORMACIÓN*/
+    .info-content{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem;
+        max-width: 1000px;
+        padding: 3rem;
+        margin-top: 5vh;
+    }
+    .info-image{
+        align-items: center;
+    }
+    .info-image img{
+        width: 100%;
+    }
+    .info-text h2{
+        font-size: 3rem;
+    }
+    .info-text p{
+        font-size: 1rem;
+    }
+    .spark{
+        display: block;
+        position: absolute;
+    }
+    .spark-img-left{
+        left: 19%;
+        top: 29%;
+    }
+    .spark-img-right{
+        right: 49%;
+        bottom:25%;
+    }
+
+    /*HERO*/
+    .hero{
+        padding-top: 0px;
+    }
+    .hero-title{
+        font-size: clamp(4rem, 13vw, 11rem);
+    }
+    .spark{
+        display: block;
+        position: absolute;
+    }
+    .spark-left{
+        left: 23%;
+        top: 36%;
+    }
+    .spark-right{
+        right: 23%;
+        bottom: 36%
+    }
+
+    /*SECCIÓN VISUAL*/
+    .spark-top{
+        top: 20%;
+        right: 30%;
+        z-index: 2;
+    }
+    .spark-bottom{
+        bottom: 25%;
+        left: 40%;
+        z-index: 2;
+    }
+
+    /*SECCIÓN ABOUT + SERVICES*/
+    .about-content, .services-content{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem;
+        max-width: 1200px;
+        padding: 0 3rem;
+        margin-top: 6rem;
+    }
+    .about-card, .services-card{
+        padding: 3rem;
+    }
+    .about-card h3, .services-card h3{
+        font-size: 2rem;
+    }
+    .band-track span, .band-track-services span{
+        font-size: 1.4rem;
+    }
+    .spark-card-top{
+        left: -13%;
+        top: -8%;
+        display: none;
+    }
+    .spark-card-bottom{
+        right: -13%;
+        bottom:-18%;
+        display: none;
+    }
+
+    /*SECCIÓN CONTACT*/
+    .contact-content{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        max-width: 1200px;
+        padding: 0 3rem;
+        margin-top: 6rem;
+        align-items: center;
+    }
+    .band-track-contact span{
+            font-size: 1.4rem;
+        }
+    .contact-info h2{
+        font-size: 2.5rem;
+        text-align: left;
+    }
+    .contact-item img{
+        height: 2.5rem;
+    }
+    .contact-item span{
+        font-size: 1.5rem;
+    }
+    .spark-contact-img{
+        display: block;
+        position: absolute;
+        width: 70px;
+        height: 70px;
+    }
+    .spark-contact-top{
+        top: 22%;
+        left: 10%;
+    }
+    .spark-contact-bottom{
+        bottom: 11%;
+        right: 50%;
+    }
+    .contact-buttons{
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    /*FOOTER*/
+    .footer{
+        padding: 3rem 2rem 2rem;
+    }
+    .footer-nav{
+        flex-direction: row;
+        justify-content: center;
+        gap: 4rem;
+        margin-bottom: 2rem;
+    }
+    .footer-nav a{
+        font-size: 1rem;
+    }
+    .footer-copy{
+        font-size: 0.9rem;
+    }
+}
